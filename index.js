@@ -9,7 +9,10 @@ const memeModalCloseBtn = document.getElementById('meme-modal-close-btn')
 
 emotionRadios.addEventListener('change', highlightCheckedOption)
 
+
 memeModalCloseBtn.addEventListener('click', closeModal)
+document.body.addEventListener('click', closeModalOutside, true)
+
 
 getImageBtn.addEventListener('click', renderCat)
 
@@ -22,8 +25,26 @@ function highlightCheckedOption(e){
 }
 
 function closeModal(){
-    memeModal.style.display = 'none'
-}
+    
+        memeModal.style.display = 'none'
+
+ }
+function closeModalOutside(e){
+    console.log(e.target.className)
+    const insideEl =  e.target.className
+    if(insideEl === 'cat-img'  ) {
+
+        memeModal.style.display = 'flex'
+    } else if (insideEl ===  'meme-modal') {
+        memeModal.style.display = 'flex'
+       
+    } else {
+        memeModal.style.display = 'none'
+    }
+
+ }
+
+
 
 function renderCat(){
     const catObject = getSingleCatObject()
